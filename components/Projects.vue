@@ -5,7 +5,7 @@
       <!-- <p class="text-white font-semibold my-6 md:my-12">{{ token }}</p> -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mx-auto max-w-screen-lg scroll-trigger-project">
         <template v-for="(project, index) in projects" :key="index">
-          <div :class="`atropos my-project-${index++}`">
+          <div :class="`atropos my-project-${index+1}`">
             <div class="atropos-scale">
               <div class="atropos-rotate">
                 <div class="atropos-inner py-1">
@@ -184,7 +184,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import Atropos from "atropos"
 import { Tippy } from 'vue-tippy'
 import { useTippy } from 'vue-tippy'
@@ -192,11 +192,11 @@ import { useImagesStore } from '@/stores/images'
 // import { userAccountStore } from '@/stores/account'
 
 const imageStore = useImagesStore()
-const images = ref(null)
+const images: Ref<{ [key: string]: any } | null> = ref(null)
 
 /* Use vue-tippy */
-const website = ref(null)
-const telegram = ref(null)
+const website: Ref<any> = ref(undefined)
+const telegram: Ref<any> = ref(undefined)
 useTippy(website, { content: 'Website', theme: 'translucent', animation: 'scale', animateFill: true })
 useTippy(telegram, { content: 'Telegram', theme: 'translucent', animation: 'scale', animateFill: true })
 /**/
