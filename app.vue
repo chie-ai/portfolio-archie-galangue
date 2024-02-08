@@ -5,8 +5,10 @@
 </template>
 
 <script setup lang="ts">
+/*
+ * app.vue is loaded only once
+ **/
 import { useImagesStore } from '@/stores/images'
-
 const imageStore = useImagesStore()
 
 onBeforeMount(() => {
