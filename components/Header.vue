@@ -9,9 +9,7 @@
           <ClientOnly>
             <template v-for="(social, index) in socialLinks" :key="index">
               <a :href="social.link" target="_blank" class="text-2xl text-gray-200 hover:text-white transition">
-                <!-- <font-awesome-layers> -->
                 <font-awesome-icon :icon="['fab', social.icon]" />
-                <!-- </font-awesome-layers> -->
               </a>
             </template>
           </ClientOnly>
@@ -49,25 +47,13 @@
 </template>
 
 <script setup lang="ts">
-// import { userAccountStore } from '@/stores/account'
-
-// Enable before deploying in the production
-// const { $gsap, $ScrollTrigger } = useNuxtApp()
-
 // Temporarily enabled as '$ScrollSmoother' needs subscription when deployed in the production
 const { $gsap, $ScrollSmoother, $ScrollTrigger } = useNuxtApp()
 
 const header = ref(false)
-// const accountStore = userAccountStore()
 
 // Temporarily enabled as '$ScrollSmoother' needs subscription when deployed in the production
 let smoother = null
-
-// Utilizing reactive with provide and inject
-// const state = inject('counter_state')
-// watch(() => state.counter, (newVal, oldVal) => {
-//   console.log('Counter value: ', newVal)
-// })
 
 const socialLinks = ref([
   { link: 'https://www.facebook.com/8.chiee', icon: 'facebook' },
@@ -89,17 +75,7 @@ onBeforeMount(() => {
   smoother = $ScrollSmoother.create({ smooth: 1, effects: true })
 })
 
-onMounted(() => {
-  $gsap.fromTo('.scroll-trigger-header', { y: -100, opacity: 0 }, { y: 0, duration: 1.1, opacity: 1 })
-
-  /**
-   * Set token in the account store with pinia
-   *
-    setTimeout(() => {
-      accountStore.setToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3MDEzOTQxOTUsImV4cCI6MTczMjkzMDE5NSwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.3TycB3XqozWTz0FVDGp5QFp_RSq0IJVk1m9Rgu31gtQ')
-    }, 3000)
-   */
-})
+onMounted(() => $gsap.fromTo('.scroll-trigger-header', { y: -100, opacity: 0 }, { y: 0, duration: 1.1, opacity: 1 }))
 
 const smoothScrollTo = (target: string) => {
   $gsap.to(window, {

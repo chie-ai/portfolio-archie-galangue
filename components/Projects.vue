@@ -189,7 +189,6 @@
 import { Tippy } from 'vue-tippy'
 import { useTippy } from 'vue-tippy'
 import { useImagesStore } from '@/stores/images'
-// import { userAccountStore } from '@/stores/account'
 
 const imageStore = useImagesStore()
 const images: Ref<{ [key: string]: any } | null> = ref(null)
@@ -265,29 +264,11 @@ const projects = ref([
 
 const { $gsap } = useNuxtApp()
 
-/**
- * Listen to the reactivity of token with the use of computed
- *
-  const accountStore = userAccountStore()
-  const count = ref(0)
-  const token = computed(() => accountStore.token)
- */
-
 onMounted(() => {
   // $ScrollSmoother.create({ smooth: 1, effects: true })
   // atroposEffects()
   gsapEffects()
   images.value = imageStore.images
-
-  /**
-   * Listen to the reactivity of count from store
-   *
-    setInterval(() => {
-      count.value += 1
-      console.log('Count: ', count.value)
-      console.log('Increment: ', increment.value)
-    }, 2000)
-   */
 })
 
 // const atroposEffects = () => {
